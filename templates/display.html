@@ -1,0 +1,37 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<h2 align="center">Display student Data</h2>
+
+ <form  method="post">
+     {% csrf_token %}
+<table align="center" border="2" class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Phno</th>
+        <th>City</th>
+        <th>Course</th>
+        <th>Update</th>
+        <th>Delete</th>
+
+    </tr>
+    {% for i in data %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.Stud_Name }}</td>
+            <td>{{ i.Stud_Age }}</td>
+            <td>{{ i.Stud_Phno }}</td>
+            <td>{{ i.Stud_City }}</td>
+            <td>{{ i.Stud_Course }}</td>
+            <td><a href="{% url 'update' i.id %}">Update</a></td>
+            <td><a href="{% url 'del' i.id %}">Delete</a></td>
+
+
+        </tr>
+    {% endfor %}
+
+        </table>
+ </form>
+
+{% endblock %}
