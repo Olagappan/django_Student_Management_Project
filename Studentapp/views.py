@@ -52,7 +52,9 @@ def logdata_fun(request):
 @cache_control(no_cache=True,revalidate=True,nostore=True)
 @never_cache
 def home_fun(request):
-    return render(request,'home.html')
+    username  = request.user.username
+
+    return render(request,'home.html',{'username': username})
 
 @login_required
 @cache_control(no_cache=True,revalidate=True,nostore=True)
@@ -81,6 +83,7 @@ def readdata_fun(request):
 @never_cache
 def display_fun(request):
     s1=Student.objects.all()
+    student_name = request.user.username
     return render(request,'display.html',{'data':s1})
 @login_required
 @cache_control(no_cache=True,revalidate=True,nostore=True)
